@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevOps Demo Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>DevOps Demo Dashboard</h1>
+
+    <div class="item">
+      <span>Application Name</span>
+      <strong id="appName">Loading...</strong>
+    </div>
+
+    <div class="item">
+      <span>Environment</span>
+      <strong id="appEnv">Loading...</strong>
+    </div>
+
+    <div class="item">
+      <span>Build Version</span>
+      <strong id="appVersion">Loading...</strong>
+    </div>
+
+    <div class="item">
+      <span>Health Status</span>
+      <strong id="healthStatus">Checking...</strong>
+    </div>
+  </div>
+
+  <script>
+    fetch("/version")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("appName").textContent = data.appName;
+        document.getElementById("appEnv").textContent = data.environment;
+        document.getElementById("appVersion").textContent = data.version;
+      });
+
+    fetch("/health")
+      .then(res => res.json())
+      .then(() => {
+        document.getElementById("healthStatus").textContent = "OK";
+      })
+      .catch(() => {
+        document.getElementById("healthStatus").textContent = "DOWN";
+      });
+  </script>
+</body>
+</html>
