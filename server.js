@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 // Read configuration from environment variables
 const APP_NAME = process.env.APP_NAME || "DevOps Demo App";
 const APP_ENV = process.env.APP_ENV || "dev";
-const APP_VERSION = process.env.APP_VERSION || "0.0.1";
+const APP_VERSION = process.env.APP_VERSION || "0.0.2";
 
 // Log all incoming requests
 app.use((req, res, next) => {
