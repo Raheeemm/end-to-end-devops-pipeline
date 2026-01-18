@@ -6,8 +6,8 @@ const PORT = process.env.PORT || 3000;
 
 // Read configuration from environment variables
 const APP_NAME = process.env.APP_NAME || "DevOps Demo App";
-const APP_ENV = process.env.APP_ENV || "dev";
-const APP_VERSION = process.env.APP_VERSION || "0.0.2";
+const ENVIRONMENT = process.env.ENVIRONMENT || "local";
+const BUILD_VERSION = process.env.BUILD_VERSION || "dev";
 
 // Log all incoming requests
 app.use((req, res, next) => {
@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 
 // Serve static files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 // Health endpoint
 app.get("/health", (req, res) => {
@@ -27,8 +27,8 @@ app.get("/health", (req, res) => {
 app.get("/version", (req, res) => {
   res.json({
     appName: APP_NAME,
-    environment: APP_ENV,
-    version: APP_VERSION
+    environment: ENVIRONMENT,
+    version: BUILD_VERSION
   });
 });
 
@@ -38,5 +38,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 ${APP_NAME} running on port ${PORT}`);
+  console.log(`App running on port ${PORT}`);
 });
