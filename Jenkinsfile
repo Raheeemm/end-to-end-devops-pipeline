@@ -41,11 +41,11 @@ pipeline {
                 sh '''
                   docker run -d \
                     --name devops-demo-app \
-                    -p 80:3000 devops-demo:${BUILD_VERSION}\
-                    -e APP_NAME=${APP_NAME} \
-                    -e ENVIRONMENT=${ENVIRONMENT} \
-                    -e BUILD_VERSION=${BUILD_VERSION} \
-                    ${IMAGE_NAME}:${BUILD_NUMBER}
+                    -p 80:3000 \
+                    -e APP_NAME=devops-demo \
+                    -e ENVIRONMENT=production \
+                    -e BUILD_VERSION=${BUILD_NUMBER} \
+                    devops-demo:${BUILD_NUMBER}
                 '''
             }
         }
