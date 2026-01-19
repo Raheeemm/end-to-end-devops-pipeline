@@ -53,7 +53,8 @@ pipeline {
         stage('Health Check') {
             steps {
                 sh '''
-                  sleep 5
+                  echo "Waiting for app to start..."  
+                  sleep 15
                   curl -f http://localhost/health
                 '''
             }
